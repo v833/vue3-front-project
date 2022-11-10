@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-
-const routes: RouteRecordRaw[] = []
+import { isMobileTerminal } from '@/utils/flexible'
+import pcRoutes from './pc-routes'
+import mobileRoutes from './mobile-routes'
 
 export default createRouter({
-  routes: routes,
+  routes: isMobileTerminal ? mobileRoutes : pcRoutes,
   history: createWebHistory()
 })
