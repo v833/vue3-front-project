@@ -1,9 +1,13 @@
 // import request from '@/utils/request'
+
+import { ALL_CATEGORY } from '@/constants'
+
 /**
  * 获取分类列表
  */
 export const getCategory = () => {
   return Promise.resolve([
+    ALL_CATEGORY,
     { name: 'UI/UX', id: '0' },
     { name: '平面', id: '1' },
     { name: '插画/漫画', id: '2' },
