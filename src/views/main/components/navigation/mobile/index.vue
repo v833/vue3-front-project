@@ -34,11 +34,14 @@
       </li>
     </ul>
   </div>
-  <m-popup v-model="isOpenPopup"> slot </m-popup>
+  <m-popup v-model="isOpenPopup">
+    <menuVue :categorys="data" @onItemClick="onItemClick"></menuVue>
+  </m-popup>
 </template>
 
 <script setup lang="ts">
-import { onBeforeUpdate, onMounted, onUpdated, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
+import MenuVue from '../../menu/index.vue'
 import { useScroll, useTemplateRefsList } from '@vueuse/core'
 
 defineProps({
@@ -66,10 +69,12 @@ watch(currentCategoryIndex, (val: number) => {
     transform: `translateX(${scrollWidth.value + left - 10}px)`,
     width: `${width}px`
   }
+  item.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' })
 })
 
 const onItemClick = (index: number) => {
   currentCategoryIndex.value = index
+  isOpenPopup.value = false
 }
 
 const isOpenPopup = ref(false)

@@ -37,17 +37,17 @@ const props = defineProps({
 const isOpen = useVModel(props, 'modelValue')
 
 // 锁定滚动
-const isLocked = useScrollLock(document.body)
+// const isLocked = useScrollLock(document.body)
 
-watch(
-  () => props.modelValue,
-  (val) => {
-    isLocked.value = val
-  },
-  {
-    immediate: true
-  }
-)
+// watch(
+//   () => props.modelValue,
+//   (val) => {
+//     isLocked.value = val
+//   },
+//   {
+//     immediate: true
+//   }
+// )
 
 // const onMaskClick = () => {
 //   emits('update:modelValue', false)
