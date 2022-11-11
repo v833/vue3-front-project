@@ -1,6 +1,9 @@
 <template>
   <div>
-    <mobile-navigation-vue v-if="isMobileTerminal"></mobile-navigation-vue>
+    <mobile-navigation-vue
+      v-if="isMobileTerminal"
+      :data="categorys"
+    ></mobile-navigation-vue>
     <pc-navigation-vue v-else></pc-navigation-vue>
   </div>
 </template>
@@ -9,6 +12,16 @@
 import MobileNavigationVue from './mobile/index.vue'
 import PcNavigationVue from './pc/index.vue'
 import { isMobileTerminal } from '@/utils/flexible'
+import { getCategory } from '@/api/category'
+import { ref } from 'vue'
+
+const categorys: any = ref([])
+const getCategoryData = async () => {
+  const res = await getCategory()
+  categorys.value = res
+}
+
+getCategoryData()
 </script>
 
 <style lang="scss" scoped></style>
