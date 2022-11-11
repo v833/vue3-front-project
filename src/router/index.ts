@@ -4,6 +4,6 @@ import pcRoutes from './pc-routes'
 import mobileRoutes from './mobile-routes'
 
 export default createRouter({
-  routes: isMobileTerminal ? mobileRoutes : pcRoutes,
+  routes: isMobileTerminal.value ? mobileRoutes : pcRoutes,
   history: createWebHistory()
 })
