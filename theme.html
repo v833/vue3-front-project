@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>theme-picker</title>
+  <style>
+    :root {
+      --primary-color: #000;
+      --secondary-color: #fff;
+    }
+
+    .dark {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    .light {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      transition: all .3s;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content" class="content">i am a div</div>
+  <button onClick="change()">theme change</button>
+  <script>
+    function change() {
+      content.classList.toggle("light")
+    }
+  </script>
+</body>
+
+</html>

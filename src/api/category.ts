@@ -7,7 +7,7 @@ import { ALL_CATEGORY_ITEM } from '@/constants'
  */
 export const getCategory = () => {
   return Promise.resolve([
-    ALL_CATEGORY_ITEM,
+    // ALL_CATEGORY_ITEM,
 
     {
       id: 'web_app_icon',

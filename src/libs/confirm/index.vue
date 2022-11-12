@@ -1,7 +1,7 @@
 <template>
-  <router-view></router-view>
+  <div>cponfirm</div>
 </template>
 
-<script setup></script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped></style>

@@ -1,79 +1,97 @@
 <template>
-  <div class="bg-white sticky top-0 left-0 z-10">
+  <div class="bg-white dark:bg-zinc-900 duration-500 sticky top-0 left-0 z-10">
     <ul
-      ref="ulTarget"
       class="relative flex overflow-x-auto p-1 text-xs text-zinc-600 overflow-hidden"
+      ref="ulTarget"
     >
-      <!-- 滑块 -->
-      <li
-        ref="sliderTarget"
-        :style="sliderStyle"
-        class="absolute h-[22px] bg-zinc-900 rounded-lg duration-200"
-      ></li>
       <!-- 汉堡按钮 -->
       <li
-        class="fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white z-20 shadow-l-white"
+        class="z-20 fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white dark:bg-zinc-900 shadow-l-white dark:shadow-l-zinc"
+        @click="isOpenPopup = !isOpenPopup"
       >
-        <m-svg-icon
-          @click="onHamburgerClick"
-          class="w-1.5 h-1.5"
-          name="hamburger"
-        ></m-svg-icon>
+        <m-svg-icon class="w-1.5 h-1.5" name="hamburger"></m-svg-icon>
       </li>
-      <!-- items -->
 
+      <!-- 滑块 -->
       <li
-        class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
+        class="absolute h-[22px] bg-zinc-900 dark:bg-zinc-800 rounded-lg duration-200"
+        :style="sliderStyle"
+      ></li>
+
+      <!-- category item -->
+      <li
         v-for="(item, index) in $store.getters.categorys"
         :key="item.id"
-        :class="{ 'text-zinc-100': currentCategoryIndex === index }"
-        :ref="refs.set"
-        @click="onItemClick(index)"
+        class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
+        :class="{
+          'text-zinc-100 ': $store.getters.currentCategoryIndex === index
+        }"
+        :ref="setItemRef"
+        @click="onItemClick(item)"
       >
         {{ item.name }}
       </li>
     </ul>
+
+    <m-popup v-model="isOpenPopup">
+      <menu-vue @onItemClick="onItemClick"></menu-vue>
+    </m-popup>
   </div>
-  <m-popup v-model="isOpenPopup">
-    <menuVue @onItemClick="onItemClick"></menuVue>
-  </m-popup>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
-import MenuVue from '../../menu/index.vue'
-import { useScroll, useTemplateRefsList } from '@vueuse/core'
+import { ref, watch, onBeforeUpdate } from 'vue'
+import { useScroll } from '@vueuse/core'
+import MenuVue from '@/views/main/components/menu/index.vue'
+import { useStore } from 'vuex'
 
+const store = useStore()
+
+// 滑块
 const sliderStyle = ref({
-  transform: 'translateX(0)',
+  transform: 'translateX(0px)',
   width: '52px'
 })
 
-const ulTarget = ref()
-const currentCategoryIndex = ref(0)
-const { x: scrollWidth } = useScroll(ulTarget)
-
-const refs = useTemplateRefsList()
-
-watch(currentCategoryIndex, (val) => {
-  const item = refs.value[val]
-  const { left, width } = item.getBoundingClientRect()
-  sliderStyle.value = {
-    transform: `translateX(${scrollWidth.value + left - 10}px)`,
-    width: `${width}px`
+// 获取填充的所有 item 元素
+let itemRefs = []
+const setItemRef = (el) => {
+  if (el) {
+    itemRefs.push(el)
   }
-  item.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' })
+}
+onBeforeUpdate(() => {
+  itemRefs = []
 })
-
-const onItemClick = (index) => {
-  currentCategoryIndex.value = index
+// 获取 ul 元素，以计算偏移位置
+const ulTarget = ref(null)
+const { x: ulScrollLeft } = useScroll(ulTarget)
+watch(
+  () => store.getters.currentCategoryIndex,
+  (val) => {
+    // 获取选中元素的 left、width
+    const { left, width } = itemRefs[val].getBoundingClientRect()
+    // 为 sliderStyle 设置属性
+    sliderStyle.value = {
+      // ul 横向滚动位置 + 当前元素的 left 偏移量
+      transform: `translateX(${ulScrollLeft.value + left - 10 + 'px'})`,
+      width: width + 'px'
+    }
+    itemRefs[val].scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'start'
+    })
+  }
+)
+// item 点击事件
+const onItemClick = (item) => {
+  store.commit('app/changeCurrentCategory', item)
   isOpenPopup.value = false
 }
 
+// popup 展示
 const isOpenPopup = ref(false)
-const onHamburgerClick = () => {
-  isOpenPopup.value = true
-}
 </script>
 
 <style lang="scss" scoped></style>

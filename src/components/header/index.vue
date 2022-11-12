@@ -4,10 +4,9 @@
   >
     <div class="flex items-center">
       <img
-        class="h-4 cursor-pointer mr-2"
+        class="h-4 cursor-pointer mr-2 guide-home"
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
         @click="$router.push('/')"
-        alt=""
       />
       <header-search class="w-full guide-search mr-1" />
       <header-theme class="relative mr-1" />
@@ -20,12 +19,6 @@
 import HeaderSearch from './header-search/index.vue'
 import HeaderTheme from './header-theme.vue'
 import HeaderMy from './header-my.vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-// const onLogoClick = () => {
-//   router.push('/')
-// }
 </script>
 
 <style lang="scss" scoped></style>
