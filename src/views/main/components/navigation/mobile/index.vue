@@ -24,7 +24,7 @@
 
       <li
         class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
-        v-for="(item, index) in data"
+        v-for="(item, index) in $store.getters.categorys"
         :key="item.id"
         :class="{ 'text-zinc-100': currentCategoryIndex === index }"
         :ref="refs.set"
@@ -35,34 +35,27 @@
     </ul>
   </div>
   <m-popup v-model="isOpenPopup">
-    <menuVue :categorys="data" @onItemClick="onItemClick"></menuVue>
+    <menuVue @onItemClick="onItemClick"></menuVue>
   </m-popup>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, watch } from 'vue'
 import MenuVue from '../../menu/index.vue'
 import { useScroll, useTemplateRefsList } from '@vueuse/core'
-
-defineProps({
-  data: {
-    type: Array as any,
-    default: () => []
-  }
-})
 
 const sliderStyle = ref({
   transform: 'translateX(0)',
   width: '52px'
 })
 
-const ulTarget = ref<HTMLElement>()
-const currentCategoryIndex = ref<number>(0)
+const ulTarget = ref()
+const currentCategoryIndex = ref(0)
 const { x: scrollWidth } = useScroll(ulTarget)
 
 const refs = useTemplateRefsList()
 
-watch(currentCategoryIndex, (val: number) => {
+watch(currentCategoryIndex, (val) => {
   const item = refs.value[val]
   const { left, width } = item.getBoundingClientRect()
   sliderStyle.value = {
@@ -72,7 +65,7 @@ watch(currentCategoryIndex, (val: number) => {
   item.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' })
 })
 
-const onItemClick = (index: number) => {
+const onItemClick = (index) => {
   currentCategoryIndex.value = index
   isOpenPopup.value = false
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-10">floating</div>
+  <div class="fixed right-0 bottom-10">floating</div>
 </template>
 
 <script setup lang="ts"></script>

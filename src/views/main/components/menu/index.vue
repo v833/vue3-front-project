@@ -5,7 +5,7 @@
     </h2>
     <ul class="overflow-y-scroll">
       <li
-        v-for="(item, index) in categorys"
+        v-for="(item, index) in $store.getters.categorys"
         :key="item.id"
         class="text-lg text-zinc-900 dark:text-zinc-300 px-1 py-1.5 duration-100 active:bg-zinc-100 active:dark:bg-zinc-900"
         @click="$emit('onItemClick', index)"
@@ -16,15 +16,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-defineProps({
-  categorys: {
-    type: Array as any,
-    default: () => []
-  }
-})
-
-defineEmits(['onItemClick'])
+<script setup>
+// defineEmits(['onItemClick'])
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,13 +1,13 @@
 // import request from '@/utils/request'
 
-import { ALL_CATEGORY } from '@/constants'
+import { ALL_CATEGORY_ITEM } from '@/constants'
 
 /**
  * 获取分类列表
  */
 export const getCategory = () => {
   return Promise.resolve([
-    ALL_CATEGORY,
+    ALL_CATEGORY_ITEM,
 
     {
       id: 'web_app_icon',
