@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full bg-white border-b border-b-zinc-200 px-2 py-1">
+  <div
+    class="w-full duration-500 bg-white dark:bg-zinc-800 border-b border-b-zinc-200 dark:border-b-zinc-700 px-2 py-1 h-header"
+  >
     <div class="flex items-center">
       <img
         class="h-4 cursor-pointer mr-2"
@@ -7,8 +9,8 @@
         @click="$router.push('/')"
         alt=""
       />
-      <header-search />
-      <header-theme />
+      <header-search class="w-full guide-search mr-1" />
+      <header-theme class="relative mr-1" />
       <header-my />
     </div>
   </div>
