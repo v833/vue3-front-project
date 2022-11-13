@@ -8,8 +8,8 @@
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
         @click="$router.push('/')"
       />
-      <header-search class="w-full guide-search mr-1" />
-      <header-theme class="relative mr-1" />
+      <header-search />
+      <header-theme />
       <header-my />
     </div>
   </div>
