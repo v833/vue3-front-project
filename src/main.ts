@@ -5,7 +5,7 @@ import store from './store'
 import './styles/index.scss'
 import { useREM } from '@/utils/flexible'
 import useTheme from './utils/theme'
-
+import mDirectives from './directives'
 import mLibs from '@/libs'
 // 注册svg-icons
 import 'virtual:svg-icons-register'
@@ -13,4 +13,4 @@ import 'virtual:svg-icons-register'
 useTheme()
 useREM()
 
-createApp(App).use(router).use(store).use(mLibs).mount('#app')
+createApp(App).use(router).use(store).use(mLibs).use(mDirectives).mount('#app')

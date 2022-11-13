@@ -10,7 +10,7 @@
         :data="pexelsList"
         :nodeKey="'id'"
         :column="isMobileTerminal ? 2 : 5"
-        :picturePreReading="true"
+        :picturePreReading="false"
       >
         <template v-slot="{ item, width }">
           <item-vue :data="item" :width="width"></item-vue>
