@@ -1632,6 +1632,42 @@ export const getThemes = () => {
     resolve({
       themes: [
         {
+          id: 'Afternoon tea',
+          photo:
+            'https://images.pexels.com/photos/1292862/pexels-photo-1292862.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '下午茶'
+        },
+        {
+          id: 'Care',
+          photo:
+            'https://images.pexels.com/photos/852793/pexels-photo-852793.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '关怀'
+        },
+        {
+          id: 'Wallpaper',
+          photo:
+            'https://images.pexels.com/photos/6076811/pexels-photo-6076811.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '壁纸'
+        },
+        {
+          id: 'Botany',
+          photo:
+            'https://images.pexels.com/photos/212940/pexels-photo-212940.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '植物'
+        },
+        {
+          id: 'food photography',
+          photo:
+            'https://images.pexels.com/photos/1652312/pexels-photo-1652312.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '美食摄影'
+        },
+        {
+          id: 'black theme',
+          photo:
+            'https://images.pexels.com/photos/1356300/pexels-photo-1356300.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '黑色'
+        },
+        {
           id: 'cute background',
           photo:
             'https://images.pexels.com/photos/7267852/pexels-photo-7267852.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',

@@ -66,29 +66,33 @@ const getPexelsData = async () => {
   loading.value = false
 }
 
+const resetQuery = () => {
+  let page = Math.ceil(Math.random() * 3)
+  if (page === query.page) {
+    if (query.page === 4) {
+      page--
+    } else {
+      page++
+    }
+  }
+  query = {
+    page,
+    size: 20
+  }
+  // 重置请求参数
+  isFinished.value = false
+  pexelsList.value = []
+}
+
 /**
  * 监听 currentCategory 的变化
  */
-watch(
-  () => store.getters.currentCategory,
-  () => {
-    let page = Math.ceil(Math.random() * 3)
-    if (page === query.page) {
-      if (query.page === 4) {
-        page--
-      } else {
-        page++
-      }
-    }
-    query = {
-      page,
-      size: 20
-    }
-    // 重置请求参数
-    isFinished.value = false
-    pexelsList.value = []
-  }
-)
+watch(() => store.getters.currentCategory, resetQuery)
+
+/**
+ * 监听搜索内容项的变化
+ */
+watch(() => store.getters.searchText, resetQuery)
 </script>
 
 <style lang="scss" scoped></style>
