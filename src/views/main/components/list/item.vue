@@ -3,6 +3,7 @@
     <div
       class="relative w-full rounded cursor-zoom-in group"
       :style="{ backgroundColor: randomRGB() }"
+      @click="onToPinsClick"
     >
       <img
         v-lazy
@@ -58,12 +59,12 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { message } from '@/libs'
 import { saveAs } from 'file-saver'
 import { randomRGB } from '@/utils/color'
-import { useFullscreen } from '@vueuse/core'
-import { ref } from 'vue'
+import { useElementBounding, useFullscreen } from '@vueuse/core'
+import { computed, ref } from 'vue'
 const props = defineProps({
   data: {
     type: Object,
@@ -74,6 +75,8 @@ const props = defineProps({
     default: 0
   }
 })
+
+const emits = defineEmits(['click'])
 
 const onShareClick = () => {}
 
@@ -97,7 +100,22 @@ const onDownload = () => {
 const imgTarget = ref(null)
 const { enter: onImgFullScreen } = useFullscreen(imgTarget)
 
-// const onImgFullScreen = () => {}
+const {
+  x: imgContainerX,
+  y: imgContainerY,
+  width: imgContainerWidth,
+  height: imgContainerHeight
+} = useElementBounding(imgTarget)
+const imgContainerCenter = computed(() => {
+  return {
+    translateX: parseInt(imgContainerX.value + imgContainerWidth.value / 2),
+    translateY: parseInt(imgContainerY.value + imgContainerHeight.value / 2)
+  }
+})
+
+const onToPinsClick = () => {
+  emits('click', { id: props.data.id, localtion: imgContainerCenter.value })
+}
 </script>
 
 <style lang="scss" scoped></style>

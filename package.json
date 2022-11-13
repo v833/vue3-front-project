@@ -21,6 +21,7 @@
     "@vueuse/core": "^9.4.0",
     "driver.js": "^0.9.8",
     "file-saver": "^2.0.5",
+    "gsap": "^3.11.3",
     "md5": "^2.3.0",
     "sass": "^1.55.0",
     "tailwind-scrollbar": "^2.0.1",
