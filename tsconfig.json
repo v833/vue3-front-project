@@ -18,6 +18,13 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/libs/confirm/index.js",
+    "src/libs/confirm/index.js"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

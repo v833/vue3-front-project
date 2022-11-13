@@ -1618,3 +1618,26 @@ export const getPexelsList = ({ page, size }) => {
     resolve(list[page - 1])
   })
 }
+
+export const getHint = () => {
+  return new Promise((resolve, reject) => {
+    resolve({
+      total: 2,
+      result: ['pic', 'picture']
+    })
+  })
+}
+export const getThemes = () => {
+  return new Promise((resolve, reject) => {
+    resolve({
+      themes: [
+        {
+          id: 'cute background',
+          photo:
+            'https://images.pexels.com/photos/7267852/pexels-photo-7267852.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=250&w=360',
+          title: '可爱背景'
+        }
+      ]
+    })
+  })
+}

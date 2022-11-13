@@ -2,7 +2,7 @@ module.exports = {
   // 手动切换暗模式
   darkMode: 'class',
   // Tailwind 应用范围
-  content: ['./index.html', './src/**/*.{vue,js}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts}'],
   theme: {
     extend: {
       height: {

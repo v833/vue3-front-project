@@ -23,8 +23,11 @@
 <script setup lang="ts">
 import itemVue from './item.vue'
 import { getPexelsList } from '@/api/pexels'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { isMobileTerminal } from '@/utils/flexible'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 let query = {
   page: 1,
@@ -62,6 +65,30 @@ const getPexelsData = async () => {
   // 修改 loading 标记
   loading.value = false
 }
+
+/**
+ * 监听 currentCategory 的变化
+ */
+watch(
+  () => store.getters.currentCategory,
+  () => {
+    let page = Math.ceil(Math.random() * 3)
+    if (page === query.page) {
+      if (query.page === 4) {
+        page--
+      } else {
+        page++
+      }
+    }
+    query = {
+      page,
+      size: 20
+    }
+    // 重置请求参数
+    isFinished.value = false
+    pexelsList.value = []
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>

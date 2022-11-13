@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import mSvgIcon from '../svg-icon/index.vue'
 import { computed } from 'vue'
 
 // type 可选项：表示按钮风格
