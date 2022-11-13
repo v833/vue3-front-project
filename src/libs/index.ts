@@ -1,6 +1,6 @@
 import { App } from 'vue'
 export { confirm } from './confirm'
-// export { message } from './message'
+export { message } from './message'
 
 const data: any = import.meta.glob('./*/index.vue', { eager: true })
 

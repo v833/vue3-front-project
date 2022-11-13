@@ -4,3 +4,15 @@
 @tailwind components;
 // 导入tailwindcss的工具指令
 @tailwind utilities;
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+.driver-fix-stacking {
+  position: relative;
+}
+
+.driver-navigation-btns {
+  line-height: 0;
+}
