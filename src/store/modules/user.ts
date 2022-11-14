@@ -1,7 +1,7 @@
-// import { loginUser, getProfile, registerUser } from '@/api/sys'
-import md5 from 'md5'
-// import { message } from '@/libs'
+import { loginUser, getProfile, registerUser } from '@/api/sys'
+// import md5 from 'md5'
 import { LOGIN_TYPE_OAUTH_NO_REGISTER_CODE } from '@/constants'
+import { message } from '@/libs'
 
 export default {
   namespaced: true,
@@ -32,20 +32,14 @@ export default {
     async register(context, payload) {
       const { password } = payload
       // 注册
-      return await registerUser({
-        ...payload,
-        password: password ? md5(password) : ''
-      })
+      return await registerUser()
     },
     /**
      * 登录
      */
     async login(context, payload) {
       const { password } = payload
-      const data = await loginUser({
-        ...payload,
-        password: password ? md5(password) : ''
-      })
+      const data: any = await loginUser()
       // QQ 扫码登录，用户未注册
       if (data.code === LOGIN_TYPE_OAUTH_NO_REGISTER_CODE) {
         return data.code
