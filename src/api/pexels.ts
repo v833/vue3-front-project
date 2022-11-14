@@ -1677,3 +1677,26 @@ export const getThemes = () => {
     })
   })
 }
+
+export const getPexelsFromId = (id) => {
+  return new Promise((resolve) => {
+    resolve({
+      tags: ['all', 'kids', 'people', 'film_music_books', 'tips'],
+      _id: '62208123fb7e8b6da85b7e00',
+      photoLink: 'https://www.pexels.com/zh-cn/photo/5313576/',
+      photo:
+        'https://images.pexels.com/photos/5313576/pexels-photo-5313576.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      authorLike: 'https://www.pexels.com/zh-cn/@stephanlouis',
+      avatar:
+        'https://images.pexels.com/users/avatars/3470573/stephan-louis-639.jpeg?auto=compress&fit=crop&h=60&w=60',
+      author: 'Stephan Louis',
+      photoDownLink: 'https://www.pexels.com/photo/5313576/download/',
+      id: '5313576',
+      title: '图片数据来自 pexels ',
+      photoWidth: 500,
+      photoHeight: 750,
+      photoType: 'jpg',
+      __v: 0
+    })
+  })
+}
