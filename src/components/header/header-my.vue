@@ -54,6 +54,7 @@
 </template>
 
 <script setup>
+import { confirm } from '@/libs'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
