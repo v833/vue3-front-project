@@ -22,6 +22,7 @@
     "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vueuse/core": "^9.4.0",
+    "dayjs": "^1.11.6",
     "driver.js": "^0.9.8",
     "file-saver": "^2.0.5",
     "gsap": "^3.11.3",
