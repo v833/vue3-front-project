@@ -1,9 +1,14 @@
 <template>
-  <div class="h-screen w-screen fixed top-0 left-0">
-    <router-view></router-view>
+  <!-- 一级路由出口 -->
+  <div class="h-screen fixed top-0 left-0 w-screen">
+    <!-- <router-view></router-view> -->
+    <m-transition-router-view
+      mainComponentName="home"
+      :routerType="$store.getters.routerType"
+    ></m-transition-router-view>
   </div>
 </template>
 
-<script setup lang="ts" name="App"></script>
+<script setup></script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

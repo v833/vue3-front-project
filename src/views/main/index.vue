@@ -7,7 +7,7 @@
     <div class="max-w-screen-xl mx-auto relative m-1 xl:mt-4">
       <list-vue></list-vue>
     </div>
-    <!-- <m-trigger-menu
+    <m-trigger-menu
       v-if="isMobileTerminal"
       class="fixed bottom-6 m-auto left-0 right-0 w-[220px]"
     >
@@ -34,11 +34,11 @@
       >
         {{ $store.getters.token ? '我的' : '登录' }}
       </m-trigger-menu-item>
-    </m-trigger-menu> -->
+    </m-trigger-menu>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { isMobileTerminal } from '@/utils/flexible'
 import NavigationVue from './components/navigation/index.vue'
 import listVue from './components/list/index.vue'
@@ -74,7 +74,7 @@ const onMyClick = () => {
 /**
  * 记录页面滚动位置
  */
-const containerTarget: any = ref(null)
+const containerTarget = ref(null)
 const { y: containerTargetScrollY } = useScroll(containerTarget)
 // 被缓存的组件再次可见，会回调 onActivated 方法
 onActivated(() => {
